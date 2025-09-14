@@ -1,4 +1,4 @@
-import { ApiResponse, ApiError } from '@/types/api';
+import { ApiResponse, ApiError, MapsData, MapItem } from '@/types/api';
 
 const BACKEND_URL = 'http://192.168.0.102:8081';
 
@@ -33,12 +33,46 @@ export class ApiService {
     }
   }
 
-  static async getMaps(): Promise<ApiResponse> {
-    return this.fetchWithErrorHandling<ApiResponse>(`${BACKEND_URL}/`);
+  static async getMaps(category?: string): Promise<ApiResponse> {
+    const url = `${BACKEND_URL}${category ? `/maps/${category}` : '/'}`;
+    const response = await this.fetchWithErrorHandling<ApiResponse>(url);
+    
+    // Transform the maps object into the expected format
+    if (response.maps) {
+      const mapsData: MapsData = {
+        analysis: response.maps.analysis || [],
+        congestion: response.maps.congestion || [],
+        heatmaps: response.maps.heatmaps || []
+      };
+      
+      // Ensure all URLs are absolute
+      (Object.entries(mapsData) as [keyof MapsData, MapItem[]][]).forEach(([_, categoryMaps]) => {
+        categoryMaps.forEach((map: MapItem) => {
+          if (!map.url.startsWith('http')) {
+            map.url = this.getMapUrl(map.url);
+          }
+        });
+      });
+      
+      return {
+        ...response,
+        maps: mapsData
+      };
+    }
+    
+    // Return empty maps if none found
+    return {
+      ...response,
+      maps: {
+        analysis: [],
+        congestion: [],
+        heatmaps: []
+      }
+    };
   }
 
   static getMapUrl(mapUrl: string): string {
-    return `${BACKEND_URL}${mapUrl}`;
+    return mapUrl.startsWith('http') ? mapUrl : `${BACKEND_URL}${mapUrl}`;
   }
 
   static async testConnection(): Promise<boolean> {
