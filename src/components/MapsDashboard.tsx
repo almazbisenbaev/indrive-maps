@@ -46,7 +46,7 @@ export function MapsDashboard() {
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center space-y-4">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="text-muted-foreground">Loading maps data...</p>
+          <p className="text-muted-foreground">Загрузка данных карт...</p>
         </div>
       </div>
     );
@@ -57,9 +57,9 @@ export function MapsDashboard() {
       <div className="flex items-center justify-center min-h-[400px]">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle className="text-destructive">Connection Error</CardTitle>
+            <CardTitle className="text-destructive">Ошибка подключения</CardTitle>
             <CardDescription>
-              Failed to connect to the backend server
+              Не удалось подключиться к серверу
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -68,7 +68,7 @@ export function MapsDashboard() {
             </div>
             <div className="flex gap-2">
               <Button onClick={fetchData} className="flex-1">
-                Retry
+                Повторить
               </Button>
               <ConnectionStatus />
             </div>
@@ -81,7 +81,7 @@ export function MapsDashboard() {
   if (!data) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <p className="text-muted-foreground">No data available</p>
+          <p className="text-muted-foreground">Нет доступных данных</p>
       </div>
     );
   }
@@ -91,7 +91,7 @@ export function MapsDashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Maps Dashboard</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Панель карт</h1>
           <p className="text-muted-foreground mt-1">{data.message}</p>
         </div>
         <div className="flex items-center gap-4">
@@ -106,19 +106,19 @@ export function MapsDashboard() {
       <Tabs defaultValue="analysis" className="w-full">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="analysis" className="flex items-center gap-2">
-            Analysis
+Анализ
             <Badge variant="secondary" className="ml-1">
               {data.maps.analysis.length}
             </Badge>
           </TabsTrigger>
           <TabsTrigger value="congestion" className="flex items-center gap-2">
-            Congestion
+Пробки
             <Badge variant="secondary" className="ml-1">
               {data.maps.congestion.length}
             </Badge>
           </TabsTrigger>
           <TabsTrigger value="heatmaps" className="flex items-center gap-2">
-            Heatmaps
+Тепловые карты
             <Badge variant="secondary" className="ml-1">
               {data.maps.heatmaps.length}
             </Badge>
@@ -128,9 +128,9 @@ export function MapsDashboard() {
         <TabsContent value="analysis" className="mt-6">
           <div className="space-y-4">
             <div>
-              <h2 className="text-xl font-semibold">Analysis Maps</h2>
+              <h2 className="text-xl font-semibold">Карты анализа</h2>
               <p className="text-muted-foreground text-sm">
-                Traffic analysis and clustering visualizations
+                Визуализация анализа и кластеризации трафика
               </p>
             </div>
             {renderMapGrid(data.maps.analysis, 'analysis')}
@@ -140,9 +140,9 @@ export function MapsDashboard() {
         <TabsContent value="congestion" className="mt-6">
           <div className="space-y-4">
             <div>
-              <h2 className="text-xl font-semibold">Congestion Maps</h2>
+              <h2 className="text-xl font-semibold">Карты пробок</h2>
               <p className="text-muted-foreground text-sm">
-                Traffic congestion and bottleneck visualizations
+                Визуализация пробок и узких мест трафика
               </p>
             </div>
             {renderMapGrid(data.maps.congestion, 'congestion')}
@@ -152,9 +152,9 @@ export function MapsDashboard() {
         <TabsContent value="heatmaps" className="mt-6">
           <div className="space-y-4">
             <div>
-              <h2 className="text-xl font-semibold">Heatmap Visualizations</h2>
+              <h2 className="text-xl font-semibold">Тепловые карты</h2>
               <p className="text-muted-foreground text-sm">
-                Density and traffic flow heatmaps
+                Тепловые карты плотности и потока трафика
               </p>
             </div>
             {renderMapGrid(data.maps.heatmaps, 'heatmaps')}

@@ -31,11 +31,11 @@ export function MapCard({ map, category }: MapCardProps) {
   const getCategoryName = (category: string) => {
     switch (category) {
       case 'analysis':
-        return 'Analysis';
+        return 'Анализ';
       case 'congestion':
-        return 'Congestion';
+        return 'Пробки';
       case 'heatmaps':
-        return 'Heatmaps';
+        return 'Тепловые карты';
       default:
         return category;
     }
@@ -59,7 +59,7 @@ export function MapCard({ map, category }: MapCardProps) {
         <CardContent className="pt-0 flex-1 flex flex-col justify-end">
           <div className="space-y-3">
             <div className="text-xs text-muted-foreground">
-              <span className="font-medium">Path:</span>
+              <span className="font-medium">Путь:</span>
               <code className="ml-1 px-1 py-0.5 bg-muted rounded text-xs">
                 {map.url}
               </code>
@@ -69,7 +69,7 @@ export function MapCard({ map, category }: MapCardProps) {
               onClick={() => setIsViewerOpen(true)}
               className="w-full"
             >
-              View Map
+              Просмотреть карту
             </Button>
           </div>
         </CardContent>

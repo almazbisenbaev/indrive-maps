@@ -40,7 +40,7 @@ export function MapViewer({ map, isOpen, onClose }: MapViewerProps) {
         <DialogHeader className="flex-shrink-0">
           <DialogTitle className="flex items-center gap-2">
             {map.name}
-            <Badge variant="secondary">HTML Map</Badge>
+            <Badge variant="secondary">HTML Карта</Badge>
           </DialogTitle>
         </DialogHeader>
         
@@ -54,7 +54,7 @@ export function MapViewer({ map, isOpen, onClose }: MapViewerProps) {
               <div className="absolute inset-0 flex items-center justify-center bg-muted/50 rounded-lg z-10">
                 <div className="text-center space-y-2">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-                  <p className="text-sm text-muted-foreground">Loading map...</p>
+                  <p className="text-sm text-muted-foreground">Загрузка карты...</p>
                 </div>
               </div>
             )}
@@ -70,10 +70,10 @@ export function MapViewer({ map, isOpen, onClose }: MapViewerProps) {
                       setError(null);
                       setIsLoading(true);
                     }}>
-                      Retry
+                      Повторить
                     </Button>
                     <Button onClick={handleOpenInNewTab}>
-                      Open in New Tab
+                      Открыть в новой вкладке
                     </Button>
                   </div>
                 </div>
@@ -92,7 +92,7 @@ export function MapViewer({ map, isOpen, onClose }: MapViewerProps) {
 
           <div className="flex gap-2 justify-between items-center flex-shrink-0">
             <div className="text-xs text-muted-foreground">
-              <span className="font-medium">URL:</span>
+              <span className="font-medium">Ссылка:</span>
               <code className="ml-1 px-1 py-0.5 bg-muted rounded text-xs">
                 {map.url}
               </code>
@@ -100,10 +100,10 @@ export function MapViewer({ map, isOpen, onClose }: MapViewerProps) {
             
             <div className="flex gap-2">
               <Button variant="outline" onClick={handleOpenInNewTab}>
-                Open in New Tab
+                Открыть в новой вкладке
               </Button>
               <Button variant="outline" onClick={onClose}>
-                Close
+                Закрыть
               </Button>
             </div>
           </div>
