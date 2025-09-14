@@ -95,9 +95,9 @@ export function MapsDashboard() {
           <p className="text-muted-foreground mt-1">{data.message}</p>
         </div>
         <div className="flex items-center gap-4">
-          <Badge variant="outline" className="text-sm">
+          {/* <Badge variant="outline" className="text-sm">
             v{data.version} • {data.total_maps} maps
-          </Badge>
+          </Badge> */}
           <ConnectionStatus />
         </div>
       </div>
