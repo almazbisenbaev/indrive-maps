@@ -68,9 +68,8 @@ export function MapCard({ map, category }: MapCardProps) {
             <Button 
               onClick={() => setIsViewerOpen(true)}
               className="w-full"
-              variant="outline"
             >
-              View Details
+              View Map
             </Button>
           </div>
         </CardContent>
